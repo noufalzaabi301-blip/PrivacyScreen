@@ -26,7 +26,7 @@ jobs:
 
       - name: Build EXE
         run: |
-          python -m PyInstaller --noconfirm --clean --onefile --windowed --name PrivacyScreen main.py
+          python -m PyInstaller --noconfirm --clean --onefile --windowed --paths . --collect-submodules privacy_screen --name PrivacyScreen main.py
 
       - name: Upload EXE
         uses: actions/upload-artifact@v4
