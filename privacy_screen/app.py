@@ -81,21 +81,12 @@ class PrivacyScreenApp:
     def refresh_monitors(self) -> None:
         previous_device = self._selected_device()
         self.monitors = enumerate_monitors()
-        values = ["Automatic external screen", *[monitor.label for monitor in self.monitors]]
+values = ["Automatic external screen"]
         self.monitor_combo["values"] = values
-        target = previous_device or self.config.monitor
-        if target in {"AUTO", "ALL"}:
-            self.monitor_var.set("Automatic external screen")
-        else:
-            match = next((m for m in self.monitors if m.device_name == target), None)
-            self.monitor_var.set(match.label if match else "Automatic external screen")
-
+       self.monitor_var.set("Automatic external screen")
+       
     def _selected_device(self) -> str:
-        label = self.monitor_var.get()
-        if not label or label == "Automatic external screen":
-            return "AUTO"
-        match = next((m for m in self.monitors if m.label == label), None)
-        return match.device_name if match else "AUTO"
+    return "AUTO"
 
     def _projector_monitor(self) -> Monitor | None:
         self.monitors = enumerate_monitors()
