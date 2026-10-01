@@ -58,157 +58,157 @@ class PrivacyScreenApp:
         self.refresh_monitors()
 
         def _build_settings(self) -> None:
-        """Create the application settings window."""
-        frame = ttk.Frame(self.root, padding=20)
-        frame.grid(sticky="nsew")
-
-        # Application title
-        ttk.Label(
-            frame,
-            text="Privacy Screen",
-            font=("Segoe UI", 16, "bold"),
-        ).grid(
-            row=0,
-            column=0,
-            columnspan=2,
-            sticky="w",
-            pady=(0, 6),
-        )
-
-        # Formal application description
-        description = (
-            "Privacy Screen protects information shown on an external display. "
-            "When activated, it moves open windows back to the laptop and places "
-            "a black privacy screen over the projector or external monitor."
-        )
-
-        ttk.Label(
-            frame,
-            text=description,
-            foreground="#555555",
-            justify="left",
-            wraplength=560,
-        ).grid(
-            row=1,
-            column=0,
-            columnspan=2,
-            sticky="w",
-            pady=(0, 18),
-        )
-
-        # Global hotkey selection
-        ttk.Label(
-            frame,
-            text="Global hotkey:",
-        ).grid(
-            row=2,
-            column=0,
-            sticky="w",
-            padx=(0, 12),
-            pady=5,
-        )
-
-        hotkey_options = [
-            "F8",
-            "F9",
-            "F10",
-            "F11",
-            "F12",
-            "Ctrl+Shift+P",
-            "Ctrl+Alt+P",
-            "Ctrl+Shift+B",
-            "Win+Alt+1",
-        ]
-
-        self.hotkey_combo = ttk.Combobox(
-            frame,
-            textvariable=self.hotkey_var,
-            values=hotkey_options,
-            width=35,
-            state="readonly",
-        )
-        self.hotkey_combo.grid(
-            row=2,
-            column=1,
-            sticky="ew",
-            pady=5,
-        )
-
-        # Examples below the global hotkey
-        ttk.Label(
-            frame,
-            text="Available examples: F8, Ctrl+Shift+P, Win+Alt+1",
-            foreground="#666666",
-        ).grid(
-            row=3,
-            column=1,
-            sticky="w",
-            pady=(0, 10),
-        )
-
-        # External-screen selection
-        ttk.Label(
-            frame,
-            text="Screen:",
-        ).grid(
-            row=4,
-            column=0,
-            sticky="w",
-            padx=(0, 12),
-            pady=5,
-        )
-
-        self.monitor_combo = ttk.Combobox(
-            frame,
-            textvariable=self.monitor_var,
-            width=35,
-            state="readonly",
-        )
-        self.monitor_combo.grid(
-            row=4,
-            column=1,
-            sticky="ew",
-            pady=5,
-        )
-
-        # Buttons
-        buttons = ttk.Frame(frame)
-        buttons.grid(
-            row=5,
-            column=0,
-            columnspan=2,
-            sticky="e",
-            pady=(16, 0),
-        )
-
-        ttk.Button(
-            buttons,
-            text="Refresh Screen",
-            command=self.refresh_monitors,
-        ).pack(
-            side="left",
-            padx=(0, 8),
-        )
-
-        ttk.Button(
-            buttons,
-            text="Save Settings",
-            command=self.save_settings,
-        ).pack(side="left")
-
-        # Status message
-        ttk.Label(
-            frame,
-            textvariable=self.status_var,
-            foreground="#444444",
-            wraplength=560,
-        ).grid(
-            row=6,
-            column=0,
-            columnspan=2,
-            sticky="w",
-            pady=(18, 0),
-        )
+            """Create the application settings window."""
+            frame = ttk.Frame(self.root, padding=20)
+            frame.grid(sticky="nsew")
+    
+            # Application title
+            ttk.Label(
+                frame,
+                text="Privacy Screen",
+                font=("Segoe UI", 16, "bold"),
+            ).grid(
+                row=0,
+                column=0,
+                columnspan=2,
+                sticky="w",
+                pady=(0, 6),
+            )
+    
+            # Formal application description
+            description = (
+                "Privacy Screen protects information shown on an external display. "
+                "When activated, it moves open windows back to the laptop and places "
+                "a black privacy screen over the projector or external monitor."
+            )
+    
+            ttk.Label(
+                frame,
+                text=description,
+                foreground="#555555",
+                justify="left",
+                wraplength=560,
+            ).grid(
+                row=1,
+                column=0,
+                columnspan=2,
+                sticky="w",
+                pady=(0, 18),
+            )
+    
+            # Global hotkey selection
+            ttk.Label(
+                frame,
+                text="Global hotkey:",
+            ).grid(
+                row=2,
+                column=0,
+                sticky="w",
+                padx=(0, 12),
+                pady=5,
+            )
+    
+            hotkey_options = [
+                "F8",
+                "F9",
+                "F10",
+                "F11",
+                "F12",
+                "Ctrl+Shift+P",
+                "Ctrl+Alt+P",
+                "Ctrl+Shift+B",
+                "Win+Alt+1",
+            ]
+    
+            self.hotkey_combo = ttk.Combobox(
+                frame,
+                textvariable=self.hotkey_var,
+                values=hotkey_options,
+                width=35,
+                state="readonly",
+            )
+            self.hotkey_combo.grid(
+                row=2,
+                column=1,
+                sticky="ew",
+                pady=5,
+            )
+    
+            # Examples below the global hotkey
+            ttk.Label(
+                frame,
+                text="Available examples: F8, Ctrl+Shift+P, Win+Alt+1",
+                foreground="#666666",
+            ).grid(
+                row=3,
+                column=1,
+                sticky="w",
+                pady=(0, 10),
+            )
+    
+            # External-screen selection
+            ttk.Label(
+                frame,
+                text="Screen:",
+            ).grid(
+                row=4,
+                column=0,
+                sticky="w",
+                padx=(0, 12),
+                pady=5,
+            )
+    
+            self.monitor_combo = ttk.Combobox(
+                frame,
+                textvariable=self.monitor_var,
+                width=35,
+                state="readonly",
+            )
+            self.monitor_combo.grid(
+                row=4,
+                column=1,
+                sticky="ew",
+                pady=5,
+            )
+    
+            # Buttons
+            buttons = ttk.Frame(frame)
+            buttons.grid(
+                row=5,
+                column=0,
+                columnspan=2,
+                sticky="e",
+                pady=(16, 0),
+            )
+    
+            ttk.Button(
+                buttons,
+                text="Refresh Screen",
+                command=self.refresh_monitors,
+            ).pack(
+                side="left",
+                padx=(0, 8),
+            )
+    
+            ttk.Button(
+                buttons,
+                text="Save Settings",
+                command=self.save_settings,
+            ).pack(side="left")
+    
+            # Status message
+            ttk.Label(
+                frame,
+                textvariable=self.status_var,
+                foreground="#444444",
+                wraplength=560,
+            ).grid(
+                row=6,
+                column=0,
+                columnspan=2,
+                sticky="w",
+                pady=(18, 0),
+            )
 
     def refresh_monitors(self) -> None:
         """Refresh monitors and keep automatic screen selection enabled."""
