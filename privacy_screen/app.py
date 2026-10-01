@@ -57,50 +57,101 @@ class PrivacyScreenApp:
         self._build_settings()
         self.refresh_monitors()
 
-    def _build_settings(self) -> None:
+        def _build_settings(self) -> None:
         """Create the application settings window."""
-        frame = ttk.Frame(self.root, padding=18)
+        frame = ttk.Frame(self.root, padding=20)
         frame.grid(sticky="nsew")
 
+        # Application title
         ttk.Label(
             frame,
             text="Privacy Screen",
-            font=("Segoe UI", 15, "bold"),
+            font=("Segoe UI", 16, "bold"),
         ).grid(
             row=0,
             column=0,
             columnspan=2,
             sticky="w",
-            pady=(0, 14),
+            pady=(0, 6),
+        )
+
+        # Formal application description
+        description = (
+            "Privacy Screen protects information shown on an external display. "
+            "When activated, it moves open windows back to the laptop and places "
+            "a black privacy screen over the projector or external monitor."
         )
 
         ttk.Label(
             frame,
-            text="Global hotkey:",
+            text=description,
+            foreground="#555555",
+            justify="left",
+            wraplength=560,
         ).grid(
             row=1,
+            column=0,
+            columnspan=2,
+            sticky="w",
+            pady=(0, 18),
+        )
+
+        # Global hotkey selection
+        ttk.Label(
+            frame,
+            text="Global hotkey:",
+        ).grid(
+            row=2,
             column=0,
             sticky="w",
             padx=(0, 12),
             pady=5,
         )
 
-        ttk.Entry(
+        hotkey_options = [
+            "F8",
+            "F9",
+            "F10",
+            "F11",
+            "F12",
+            "Ctrl+Shift+P",
+            "Ctrl+Alt+P",
+            "Ctrl+Shift+B",
+            "Win+Alt+1",
+        ]
+
+        self.hotkey_combo = ttk.Combobox(
             frame,
             textvariable=self.hotkey_var,
-            width=28,
-        ).grid(
-            row=1,
+            values=hotkey_options,
+            width=35,
+            state="readonly",
+        )
+        self.hotkey_combo.grid(
+            row=2,
             column=1,
             sticky="ew",
             pady=5,
         )
 
+        # Examples below the global hotkey
+        ttk.Label(
+            frame,
+            text="Available examples: F8, Ctrl+Shift+P, Win+Alt+1",
+            foreground="#666666",
+        ).grid(
+            row=3,
+            column=1,
+            sticky="w",
+            pady=(0, 10),
+        )
+
+        # External-screen selection
         ttk.Label(
             frame,
             text="Screen:",
         ).grid(
-            row=2,
+            row=4,
             column=0,
             sticky="w",
             padx=(0, 12),
@@ -114,41 +165,25 @@ class PrivacyScreenApp:
             state="readonly",
         )
         self.monitor_combo.grid(
-            row=2,
+            row=4,
             column=1,
             sticky="ew",
             pady=5,
         )
 
-        note = (
-            "Examples: F8, Ctrl+Shift+P, Win+Alt+1\n"
-            "Moves external windows to the laptop, then blacks the projector."
-        )
-
-        ttk.Label(
-            frame,
-            text=note,
-            foreground="#555555",
-            justify="left",
-        ).grid(
-            row=3,
-            column=0,
-            columnspan=2,
-            sticky="w",
-            pady=(8, 14),
-        )
-
+        # Buttons
         buttons = ttk.Frame(frame)
         buttons.grid(
-            row=4,
+            row=5,
             column=0,
             columnspan=2,
             sticky="e",
+            pady=(16, 0),
         )
 
         ttk.Button(
             buttons,
-            text="Refresh screens",
+            text="Refresh Screen",
             command=self.refresh_monitors,
         ).pack(
             side="left",
@@ -157,19 +192,22 @@ class PrivacyScreenApp:
 
         ttk.Button(
             buttons,
-            text="Save",
+            text="Save Settings",
             command=self.save_settings,
         ).pack(side="left")
 
+        # Status message
         ttk.Label(
             frame,
             textvariable=self.status_var,
+            foreground="#444444",
+            wraplength=560,
         ).grid(
-            row=5,
+            row=6,
             column=0,
             columnspan=2,
             sticky="w",
-            pady=(14, 0),
+            pady=(18, 0),
         )
 
     def refresh_monitors(self) -> None:
